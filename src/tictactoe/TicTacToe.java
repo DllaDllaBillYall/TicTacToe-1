@@ -1,0 +1,17 @@
+package tictactoe;
+
+/**
+ *
+ * @author manny
+ */
+public class TicTacToe {
+    
+    public static void main(String[] args) {
+        Game game = new Game();
+        game.start();
+        while(!game.getGameEnd()){
+            game.play();
+        }
+    }
+    
+}

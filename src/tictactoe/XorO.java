@@ -17,4 +17,7 @@ public enum XorO {
         return player;
     }
     
+    public String toString(){
+        return "Player " + player;
+    }
 }

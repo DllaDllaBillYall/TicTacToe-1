@@ -14,26 +14,38 @@ public class Player {
     public HumanOrCPU is; // Identifier to see if player is human or AI
     private Scanner scan;
     
-    public Player(XorO turn, HumanOrCPU is){
-        this.turn = turn;
-        this.is = is;
+    public Player(){
         this.scan = new Scanner(System.in);
     }
     
     // Allows player to make a move
-    public void setMove(Board board){
+    public void move(Board board){
         switch(is){ // Checks to see if huamn or AI before making move
-            case Human:
+            case CPU:
+                // AI functions go here
+                break;  
+            default:
                 System.out.println("Enter the coordinates for your move.");
                 System.out.println("X Coordinate: ");
                 this.setXCoord(scan.nextInt());
                 System.out.println("Y Coordinate: ");
                 this.setYCoord(scan.nextInt());
                 break;
-            case CPU:
-                // AI functions go here
-                break;        
         }
+        
+        board.setCoord(getXCoord(), getYCoord(), turn);
+        
+    }
+    
+    public HumanOrCPU getIs(){
+        return is;
+    }
+    
+    public void setIs(HumanOrCPU is){
+        this.is = is;
+    }
+    public void setTurn(XorO turn){
+        this.turn = turn;
     }
     
     public int getXCoord(){
@@ -52,6 +64,10 @@ public class Player {
         this.yCoord = yCoord;
     }
 
+    @Override
+    public String toString(){
+        return "Player " + turn.getTurn() + " is a " + is.getIs() + ".";
+    }
     
     
 }

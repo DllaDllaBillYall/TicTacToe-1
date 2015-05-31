@@ -34,13 +34,18 @@ public class Board {
             }
             System.out.println("\n|_ _|_ _|_ _|");
         }
+        System.out.println();
     }
     
     // Sets coordinate as X or Y to board
-    public void setCoord(Player player){
-        xCoord = player.getXCoord();
-        yCoord = player.getYCoord();
-        board[xCoord][yCoord] = player.turn.getTurn();
+    public void setCoord(int xCoord, int yCoord, XorO turn){
+        try {
+            this.xCoord = xCoord;
+            this.yCoord = yCoord;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Please pick a coodinate between 0 and 2");
+        }
+        board[xCoord][yCoord] = turn.getTurn();
         
     }
 }
