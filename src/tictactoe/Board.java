@@ -8,6 +8,8 @@ public class Board {
     private final int ROWS = 3;     // Number of rows for the board
     private final int COLUMNS = 3;  // Number of columns for the board
     private char[][] board = new char[ROWS][COLUMNS];
+    private int xCoord;
+    private int yCoord;
     
     public Board(){
         newBoard();
@@ -34,13 +36,12 @@ public class Board {
         }
     }
     
-    public void setCoord(Turn turn){
-        switch(turn){
-            case X:
-                
-        }
+    // Sets coordinate as X or Y to board
+    public void setCoord(Player player){
+        xCoord = player.getXCoord();
+        yCoord = player.getYCoord();
+        board[xCoord][yCoord] = player.turn.getTurn();
+        
     }
-    
-    
-    
 }
+

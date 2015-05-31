@@ -1,5 +1,7 @@
 package tictactoe;
 
+import java.util.Scanner;
+
 /**
  *
  * @author manny
@@ -11,7 +13,14 @@ public class Game {
      */
     public static void main(String[] args) {
         Board board = new Board();
-        board.printBoard();
+        Scanner in = new Scanner(System.in);
+        
+        System.out.println("Tic Tac Toe");
+        System.out.println("1) Multiplayer");
+        System.out.println("2) CPU");
+        int choice = in.nextInt();
+        
+        
     }
     
 }
