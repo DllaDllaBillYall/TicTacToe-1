@@ -10,11 +10,11 @@ public class Board {
     private char[][] board = new char[ROWS][COLUMNS];
     
     public Board(){
-        initBoard();
+        newBoard();
     }
     
     // Initializes the board to empty space characters
-    public void initBoard(){
+    public void newBoard(){
         for(int i = 0; i < board.length; i++){
             for(int j = 0; j < board[i].length; j++){
                 board[i][j] = ' ';
@@ -33,6 +33,14 @@ public class Board {
             System.out.println("\n|_ _|_ _|_ _|");
         }
     }
+    
+    public void setCoord(Turn turn){
+        switch(turn){
+            case X:
+                
+        }
+    }
+    
     
     
 }
