@@ -25,14 +25,17 @@ public class Board {
     }
     
     // Prints board to the console
+    // Outer array is Height Y
+    // Inner Arrays are Length X
     public void printBoard(){
-        System.out.println("\n _ _ _ _ _ _ ");
+        System.out.print("\n\n   0    1    2");
+        System.out.println("\n   _ _ _ _ _ _ ");
         for(int i = 0; i < board.length; i++){
-            System.out.print("| ");
+            System.out.printf("%d | ", i);
             for(int j = 0; j < board[i].length; j++){
                 System.out.print(board[i][j] + " | ");
             }
-            System.out.println("\n|_ _|_ _|_ _|");
+            System.out.println("\n  |_ _|_ _|_ _|");
         }
         System.out.println();
     }
@@ -42,11 +45,16 @@ public class Board {
         try {
             this.xCoord = xCoord;
             this.yCoord = yCoord;
+            board[xCoord][yCoord] = turn.getTurn();
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Please pick a coodinate between 0 and 2");
         }
-        board[xCoord][yCoord] = turn.getTurn();
         
+        
+    }
+    
+    public char[][] getBoard(){
+        return board;
     }
 }
 

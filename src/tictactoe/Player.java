@@ -19,26 +19,35 @@ public class Player {
     }
     
     // Allows player to make a move
-    public void move(Board board){
+    public boolean move(Board board){
         switch(is){ // Checks to see if huamn or AI before making move
             case CPU:
-                // AI functions go here
-                break;  
+                System.out.println("Enter the coordinates for your move.");
+                System.out.println("Which row?: ");
+                this.setXCoord(scan.nextInt());
+                System.out.println("Which column: ");
+                this.setYCoord(scan.nextInt());
+                break;
             default:
                 System.out.println("Enter the coordinates for your move.");
-                System.out.println("X Coordinate: ");
+                System.out.println("Which row?: ");
                 this.setXCoord(scan.nextInt());
-                System.out.println("Y Coordinate: ");
+                System.out.println("Which column: ");
                 this.setYCoord(scan.nextInt());
                 break;
         }
         
-        board.setCoord(getXCoord(), getYCoord(), turn);
+        if(board.getBoard()[getXCoord()][getYCoord()] == ' '){
+            board.setCoord(getXCoord(), getYCoord(), turn);
+            return true;
+        } else{
+            return false;
+        }
         
     }
     
     public HumanOrCPU getIs(){
-        return is;
+        return this.is;
     }
     
     public void setIs(HumanOrCPU is){
