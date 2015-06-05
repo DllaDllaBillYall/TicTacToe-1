@@ -36,11 +36,14 @@ public class Player {
                 this.setYCoord(scan.nextInt());
                 break;
         }
-        
-        if(board.getBoard()[getXCoord()][getYCoord()] == ' '){
-            board.setCoord(getXCoord(), getYCoord(), turn);
-            return true;
-        } else{
+        try{
+            if(board.getBoard()[getXCoord()][getYCoord()] == ' '){
+                board.setCoord(getXCoord(), getYCoord(), turn);
+                return true;
+            } else{
+                return false;
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
             return false;
         }
         

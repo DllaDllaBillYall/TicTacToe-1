@@ -42,15 +42,9 @@ public class Board {
     
     // Sets coordinate as X or Y to board
     public void setCoord(int xCoord, int yCoord, XorO turn){
-        try {
             this.xCoord = xCoord;
             this.yCoord = yCoord;
             board[xCoord][yCoord] = turn.getTurn();
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Please pick a coodinate between 0 and 2");
-        }
-        
-        
     }
     
     public char[][] getBoard(){

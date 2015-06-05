@@ -69,7 +69,7 @@ public class Game {
                 if(player.move(board)){
                     spotTaken = false;
                 } else{
-                    System.out.println("The spot is taken, try again!");
+                    System.out.println("\nPlease choose a valid spot on the board.\n");
                 }
   
             }
