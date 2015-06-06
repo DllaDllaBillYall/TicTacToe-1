@@ -20,22 +20,13 @@ public class Player {
     
     // Allows player to make a move
     public boolean move(Board board){
-        switch(is){ // Checks to see if huamn or AI before making move
-            case CPU:
-                System.out.println("Enter the coordinates for your move.");
-                System.out.println("Which row?: ");
-                this.setXCoord(scan.nextInt());
-                System.out.println("Which column: ");
-                this.setYCoord(scan.nextInt());
-                break;
-            default:
-                System.out.println("Enter the coordinates for your move.");
-                System.out.println("Which row?: ");
-                this.setXCoord(scan.nextInt());
-                System.out.println("Which column: ");
-                this.setYCoord(scan.nextInt());
-                break;
-        }
+            
+        System.out.println("Enter the coordinates for your move.");
+        System.out.println("Which row?: ");
+        this.setXCoord(scan.nextInt());
+        System.out.println("Which column: ");
+        this.setYCoord(scan.nextInt());
+        
         try{
             if(board.getBoard()[getXCoord()][getYCoord()] == ' '){
                 board.setCoord(getXCoord(), getYCoord(), turn);
@@ -80,6 +71,4 @@ public class Player {
     public String toString(){
         return "Player " + turn.getTurn() + " is a " + is.getIs() + ".";
     }
-    
-    
 }
