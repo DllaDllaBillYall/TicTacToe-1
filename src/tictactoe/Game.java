@@ -8,21 +8,22 @@ import java.util.Scanner;
  * @author manny
  */
 public class Game {
-        private Board board;    // Sets the board up for the game
-        private Player playerX;
-        private Player playerO;
-        private Player player; // Current player
+        private Board board;    // Sets the board up for the game     
+        private Player playerX; // Human PlayerX
+        private Player playerO; // Human PlayerO
+        private Player player;  // Current player
         private Scanner in;
         private XorO turn;
         private boolean gameEnd;
         
         public Game(){
             board = new Board();
-            playerX =  new Player();
             playerO = new Player();
-            in = new Scanner(System.in);
-            turn = XorO.PlayerX;
+            playerX = new Player();
+            player = new Player();
             player = playerX;
+            turn = XorO.PlayerX;
+            in = new Scanner(System.in);
             gameEnd = false;
         }
         
@@ -30,7 +31,10 @@ public class Game {
             switch(menu()){
                 // 1) Multiplayer choice
                 case 1:
-                // do this
+                    playerX.setIs(HumanOrCPU.HumanX);
+                    playerX.setTurn(XorO.PlayerX);
+                    playerO.setIs(HumanOrCPU.HumanO);
+                    playerO.setTurn(XorO.PlayerO);
                     break;
                     
                 /** 2) CPU - CPU goes first.
@@ -44,9 +48,11 @@ public class Game {
                     playerO.setTurn(XorO.PlayerO);
                     break;
             }
+            
+            System.out.println("\n" + playerX);
+            System.out.println(playerO);
                     
-                System.out.println("\n" + playerX);
-                System.out.println(playerO);
+
         }
         
         // Allows players to make their moves
@@ -64,6 +70,9 @@ public class Game {
             // Checks to see if spot is already taken for moves
             boolean spotTaken = true;
             while(spotTaken){
+                
+                // Uses a move method by the player object that returns true
+                // if the spot is not taken and false if it is
                 if(player.move(board)){
                     spotTaken = false;
                 } else{
@@ -89,13 +98,14 @@ public class Game {
                 case Continue:
                     break;
             }
-            System.out.println(board.status(player.turn));
-            nextTurn(turn);
+            
+            
+            nextTurn(this.turn);
             
         }
         
                 // Changes turns
-        private XorO nextTurn(XorO turn){
+        private void nextTurn(XorO turn){
             switch(turn){
                 case PlayerX:
                     this.turn = XorO.PlayerO;
@@ -106,8 +116,6 @@ public class Game {
                     this.player = playerX;
                     break;
             }
-            
-            return turn;
         }
         // Checks to see if player wants to play again
         public void playAgain(){
@@ -146,10 +154,6 @@ public class Game {
 
         public boolean getGameEnd(){
             return this.gameEnd;
-        }
-        
-        private void setGameEnd(boolean gameEnd){
-            this.gameEnd = gameEnd;
         }
         
         // Prints out menu and returns choice selected by user
