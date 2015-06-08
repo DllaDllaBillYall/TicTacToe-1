@@ -82,11 +82,17 @@ public class Game {
             }
             
             // Checks the status of the game after the most recent move
-            switch(board.status(player.turn)){
-                case Win:
+            switch(board.status()){
+                case WinX:
                     this.gameEnd = true;
                     board.printBoard();
-                    System.out.printf("%s has won. Play again?(y/n) \n", turn);
+                    System.out.println("Player X has won. Play again?(y/n) \n");
+                    playAgain();
+                    return;
+                case WinO:
+                    this.gameEnd = true;
+                    board.printBoard();
+                    System.out.println("Player O has won. Play again?(y/n) \n");
                     playAgain();
                     return;
                 case Tie:

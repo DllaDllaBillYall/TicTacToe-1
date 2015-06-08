@@ -13,6 +13,7 @@ public class CPUMove{
     }
     
     public CPUMove(int xCoord, int yCoord){
+        this.score = 0;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
     }

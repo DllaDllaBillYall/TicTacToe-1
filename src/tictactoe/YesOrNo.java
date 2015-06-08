@@ -3,6 +3,8 @@ package tictactoe;
 /**
  *
  * @author manny
+ * 
+ * Used as a yes or no input
  */
 public enum YesOrNo {
     yes("yes"), no("no"), y("y"), n("n"), Yes("Yes"),

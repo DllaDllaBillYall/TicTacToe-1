@@ -27,7 +27,7 @@ public class Board {
         }
     }
     
-        public WinLoseTie status(XorO turn){
+        public WinLoseTie status(){
         /* Using a set to determine if a win. If length is one and 
         that one object int he set is a player, then it's the player who
         just made a move. So the current player is a winner.
@@ -45,8 +45,12 @@ public class Board {
             set.add(gameBoard[i][i]);
         }
 
-        if(set.size() == 1 && set.contains(turn.getTurn())){
-            return WinLoseTie.Win;
+        if(set.size() == 1){
+            if(set.contains(XorO.PlayerX.getTurn())){
+                return WinLoseTie.WinX;
+            } else if(set.contains(XorO.PlayerO.getTurn())){
+                return WinLoseTie.WinO;
+            }
         }
 
        set.clear();
@@ -56,8 +60,12 @@ public class Board {
             set.add(gameBoard[i][length - i - 1]);
         }
 
-        if(set.size() == 1 && set.contains(turn.getTurn())){
-            return WinLoseTie.Win;
+        if(set.size() == 1){
+            if(set.contains(XorO.PlayerX.getTurn())){
+                return WinLoseTie.WinX;
+            } else if(set.contains(XorO.PlayerO.getTurn())){
+                return WinLoseTie.WinO;
+            }
         }
         set.clear();
 
@@ -67,16 +75,24 @@ public class Board {
             for(int j = 0; j < length; j++){
                 set.add(gameBoard[i][j]);
             }
-            if(set.size() == 1 && set.contains(turn.getTurn())){
-                return WinLoseTie.Win;
+            if(set.size() == 1){
+                if(set.contains(XorO.PlayerX.getTurn())){
+                    return WinLoseTie.WinX;
+                } else if(set.contains(XorO.PlayerO.getTurn())){
+                    return WinLoseTie.WinO;
+                }
             }
             set.clear();
 
             for(int j = 0; j < length; j++){
                 set.add(gameBoard[j][i]);
             }
-            if(set.size() == 1 && set.contains(turn.getTurn())){
-                return WinLoseTie.Win;
+            if(set.size() == 1){
+                if(set.contains(XorO.PlayerX.getTurn())){
+                    return WinLoseTie.WinX;
+                } else if(set.contains(XorO.PlayerO.getTurn())){
+                    return WinLoseTie.WinO;
+                }
             }
             set.clear();
         }
