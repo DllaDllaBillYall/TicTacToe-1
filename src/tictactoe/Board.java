@@ -27,39 +27,55 @@ public class Board {
         }
     }
     
-        public WinLoseTie status(){
-        /* Using a set to determine if a win. If length is one and 
-        that one object int he set is a player, then it's the player who
-        just made a move. So the current player is a winner.
-        */
-        Set<Character> set = new HashSet<Character>();
+    public WinLoseTie status(){
+    /** Uses a set to determine if the checked spots is a winner.
+     * Determines whether the game is a tie if the board is full,
+     * otherwise it continues.
+     */
+     
+    Set<Character> set = new HashSet<Character>();
 
-        char[][] gameBoard = this.getBoard(); 
+    char[][] gameBoard = this.getBoard(); 
 
-        // Length of game board
-        int length = gameBoard.length; 
+    // Length of game board
+    int length = gameBoard.length; 
 
 
-        // Checks for top left to bottom right diagonal
-        for(int i = 0; i < length; i++){
-            set.add(gameBoard[i][i]);
+    // Checks for top left to bottom right diagonal
+    for(int i = 0; i < length; i++){
+        set.add(gameBoard[i][i]);
+    }
+
+    if(set.size() == 1){
+        if(set.contains(XorO.PlayerX.getTurn())){
+            return WinLoseTie.WinX;
+        } else if(set.contains(XorO.PlayerO.getTurn())){
+            return WinLoseTie.WinO;
         }
+    }
 
-        if(set.size() == 1){
-            if(set.contains(XorO.PlayerX.getTurn())){
-                return WinLoseTie.WinX;
-            } else if(set.contains(XorO.PlayerO.getTurn())){
-                return WinLoseTie.WinO;
-            }
+   set.clear();
+
+    // Checks for top right to bottom left diagonal
+    for(int i = 0; i < length; i++){
+        set.add(gameBoard[i][length - i - 1]);
+    }
+
+    if(set.size() == 1){
+        if(set.contains(XorO.PlayerX.getTurn())){
+            return WinLoseTie.WinX;
+        } else if(set.contains(XorO.PlayerO.getTurn())){
+            return WinLoseTie.WinO;
         }
+    }
+    set.clear();
 
-       set.clear();
 
-        // Checks for top right to bottom left diagonal
-        for(int i = 0; i < length; i++){
-            set.add(gameBoard[i][length - i - 1]);
+    // Checks for straight lines
+    for(int i = 0; i < length; i++){
+        for(int j = 0; j < length; j++){
+            set.add(gameBoard[i][j]);
         }
-
         if(set.size() == 1){
             if(set.contains(XorO.PlayerX.getTurn())){
                 return WinLoseTie.WinX;
@@ -69,46 +85,31 @@ public class Board {
         }
         set.clear();
 
-
-        // Checks for straight lines
-        for(int i = 0; i < length; i++){
-            for(int j = 0; j < length; j++){
-                set.add(gameBoard[i][j]);
-            }
-            if(set.size() == 1){
-                if(set.contains(XorO.PlayerX.getTurn())){
-                    return WinLoseTie.WinX;
-                } else if(set.contains(XorO.PlayerO.getTurn())){
-                    return WinLoseTie.WinO;
-                }
-            }
-            set.clear();
-
-            for(int j = 0; j < length; j++){
-                set.add(gameBoard[j][i]);
-            }
-            if(set.size() == 1){
-                if(set.contains(XorO.PlayerX.getTurn())){
-                    return WinLoseTie.WinX;
-                } else if(set.contains(XorO.PlayerO.getTurn())){
-                    return WinLoseTie.WinO;
-                }
-            }
-            set.clear();
+        for(int j = 0; j < length; j++){
+            set.add(gameBoard[j][i]);
         }
-
-        for(int i = 0; i < length; i++){
-            for(int j = 0; j < length; j++){
-                set.add(gameBoard[i][j]);
+        if(set.size() == 1){
+            if(set.contains(XorO.PlayerX.getTurn())){
+                return WinLoseTie.WinX;
+            } else if(set.contains(XorO.PlayerO.getTurn())){
+                return WinLoseTie.WinO;
             }
         }
+        set.clear();
+    }
+
+    for(int i = 0; i < length; i++){
+        for(int j = 0; j < length; j++){
+            set.add(gameBoard[i][j]);
+        }
+    }
 
 
-        if(!set.contains(' ')){
-            return WinLoseTie.Tie;
-        }
-        return WinLoseTie.Continue;
-        }
+    if(!set.contains(' ')){
+        return WinLoseTie.Tie;
+    }
+    return WinLoseTie.Continue;
+    }
 
         
 
