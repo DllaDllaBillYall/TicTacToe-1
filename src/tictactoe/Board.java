@@ -27,39 +27,55 @@ public class Board {
         }
     }
     
-        /* Using a set to determine if a win. If length is one and 
-        that one object int he set is a player, then it's the player who
-        just made a move. So the current player is a winner.
-        */
-        public Status status(){
-        Set<Character> set = new HashSet<Character>();
+    public WinLoseTie status(){
+    /** Uses a set to determine if the checked spots is a winner.
+     * Determines whether the game is a tie if the board is full,
+     * otherwise it continues.
+     */
+     
+    Set<Character> set = new HashSet<Character>();
 
-        char[][] gameBoard = this.getBoard(); 
+    char[][] gameBoard = this.getBoard(); 
 
-        // Length of game board
-        int length = gameBoard.length; 
+    // Length of game board
+    int length = gameBoard.length; 
 
 
-        // Checks for top left to bottom right diagonal
-        for(int i = 0; i < length; i++){
-            set.add(gameBoard[i][i]);
+    // Checks for top left to bottom right diagonal
+    for(int i = 0; i < length; i++){
+        set.add(gameBoard[i][i]);
+    }
+
+    if(set.size() == 1){
+        if(set.contains(XorO.PlayerX.getTurn())){
+            return WinLoseTie.WinX;
+        } else if(set.contains(XorO.PlayerO.getTurn())){
+            return WinLoseTie.WinO;
         }
+    }
 
-        if(set.size() == 1){
-            if(set.contains(GamePiece.X.toString())){
-                return Status.WinX;
-            } else if(set.contains(GamePiece.O.toString())){
-                return Status.WinO;
-            }
+   set.clear();
+
+    // Checks for top right to bottom left diagonal
+    for(int i = 0; i < length; i++){
+        set.add(gameBoard[i][length - i - 1]);
+    }
+
+    if(set.size() == 1){
+        if(set.contains(XorO.PlayerX.getTurn())){
+            return WinLoseTie.WinX;
+        } else if(set.contains(XorO.PlayerO.getTurn())){
+            return WinLoseTie.WinO;
         }
+    }
+    set.clear();
 
-       set.clear();
 
-        // Checks for top right to bottom left diagonal
-        for(int i = 0; i < length; i++){
-            set.add(gameBoard[i][length - i - 1]);
+    // Checks for straight lines
+    for(int i = 0; i < length; i++){
+        for(int j = 0; j < length; j++){
+            set.add(gameBoard[i][j]);
         }
-
         if(set.size() == 1){
             if(set.contains(GamePiece.X.toString())){
                 return Status.WinX;
@@ -69,6 +85,20 @@ public class Board {
         }
         set.clear();
 
+        for(int j = 0; j < length; j++){
+            set.add(gameBoard[j][i]);
+        }
+        if(set.size() == 1){
+            if(set.contains(GamePiece.X.toString())){
+                return Status.WinX;
+            } else if(set.contains(GamePiece.O.toString())){
+                return Status.WinO;
+            }
+        }
+        set.clear();
+    }
+
+<<<<<<< HEAD
 
         // Checks for straight lines
         for(int i = 0; i < length; i++){
@@ -101,14 +131,28 @@ public class Board {
             for(int j = 0; j < length; j++){
                 set.add(gameBoard[i][j]);
             }
+=======
+    for(int i = 0; i < length; i++){
+        for(int j = 0; j < length; j++){
+            set.add(gameBoard[i][j]);
+>>>>>>> 75598fa67ab439aa5a256ed1887275a7cc72b464
         }
+    }
 
 
+<<<<<<< HEAD
         if(!set.contains(' ')){
             return Status.Tie;
         }
         return Status.Continue;
         }
+=======
+    if(!set.contains(' ')){
+        return WinLoseTie.Tie;
+    }
+    return WinLoseTie.Continue;
+    }
+>>>>>>> 75598fa67ab439aa5a256ed1887275a7cc72b464
 
         
 
