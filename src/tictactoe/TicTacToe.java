@@ -3,6 +3,8 @@ package tictactoe;
 /**
  *
  * @author manny
+ * 
+ * The main class and method of the game
  */
 public class TicTacToe {
     

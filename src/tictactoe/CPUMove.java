@@ -2,6 +2,9 @@ package tictactoe;
 /**
  *
  * @author manny
+ * 
+ * Used to store and return the best 
+ * move based on the minimax algorithm
  */
 public class CPUMove{
     public int score;

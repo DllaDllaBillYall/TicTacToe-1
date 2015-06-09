@@ -9,11 +9,11 @@ import java.util.Scanner;
  */
 public class Game {
         private Board board;    // Sets the board up for the game     
-        private Player playerX; // Human PlayerX
-        private Player playerO; // Human PlayerO
+        private Player playerX; // Human Player X
+        private Player playerO; // Human Player O
         private Player player;  // Current player
         private Scanner in;
-        private XorO turn;
+        private GamePiece piece;
         private boolean gameEnd;
         
         public Game(){
@@ -22,7 +22,7 @@ public class Game {
             playerX = new Player();
             player = new Player();
             player = playerX;
-            turn = XorO.PlayerX;
+            piece = GamePiece.X;
             in = new Scanner(System.in);
             gameEnd = false;
         }
@@ -31,10 +31,10 @@ public class Game {
             switch(menu()){
                 // 1) Multiplayer choice
                 case 1:
-                    playerX.setIs(HumanOrCPU.HumanX);
-                    playerX.setTurn(XorO.PlayerX);
-                    playerO.setIs(HumanOrCPU.HumanO);
-                    playerO.setTurn(XorO.PlayerO);
+                    playerX.setIs(PlayerType.HumanX);
+                    playerX.setTurn(GamePiece.X);
+                    playerO.setIs(PlayerType.HumanO);
+                    playerO.setTurn(GamePiece.O);
                     break;
                     
                 /** 2) CPU - CPU goes first.
@@ -42,10 +42,10 @@ public class Game {
                  */        
                 case 2:
                     // 
-                    playerX.setIs(HumanOrCPU.CPU);
-                    playerX.setTurn(XorO.PlayerX);
-                    playerO.setIs(HumanOrCPU.HumanO);
-                    playerO.setTurn(XorO.PlayerO);
+                    playerX.setIs(PlayerType.CPU);
+                    playerX.setTurn(GamePiece.X);
+                    playerO.setIs(PlayerType.HumanO);
+                    playerO.setTurn(GamePiece.O);
                     break;
             }
             
@@ -64,7 +64,7 @@ public class Game {
                     System.out.println("It is the CPU's turn.");
                     break;
                 default:
-                    System.out.printf("\nYour move %s\n", turn);
+                    System.out.printf("\nYour move %s\n", piece);
             }
             
             // Checks to see if spot is already taken for moves
@@ -106,31 +106,31 @@ public class Game {
             }
             
             
-            nextTurn(this.turn);
+            nextTurn(this.piece);
             
         }
         
-                // Changes turns
-        private void nextTurn(XorO turn){
-            switch(turn){
-                case PlayerX:
-                    this.turn = XorO.PlayerO;
+        // Changes turns
+        private void nextTurn(GamePiece piece){
+            switch(piece){
+                case X:
+                    this.piece = GamePiece.O;
                     this.player = playerO;
                     break;
-                case PlayerO:
-                    this.turn = XorO.PlayerX;
+                case O:
+                    this.piece = GamePiece.X;
                     this.player = playerX;
                     break;
             }
         }
         // Checks to see if player wants to play again
         public void playAgain(){
-            YesOrNo choice = YesOrNo.None;
+            Decision choice = Decision.None;
             String strChoice;
-            while(choice == YesOrNo.None){
+            while(choice == Decision.None){
                 try {
                     strChoice = in.next();
-                    choice = YesOrNo.valueOf(strChoice.trim());
+                    choice = Decision.valueOf(strChoice.trim());
                 } catch (IllegalArgumentException e) {
                     System.out.println("Please type in a valid value.");
                     in.next();
@@ -142,7 +142,7 @@ public class Game {
                 case y:
                 case Y:
                     this.board.newBoard();
-                    this.turn = XorO.PlayerX;
+                    this.piece = GamePiece.X;
                     this.player = playerX;
                     this.gameEnd = false;
                     return;
@@ -157,7 +157,8 @@ public class Game {
             
             
         }
-
+        
+        
         public boolean getGameEnd(){
             return this.gameEnd;
         }

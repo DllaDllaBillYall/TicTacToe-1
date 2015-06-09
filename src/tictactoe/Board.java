@@ -27,11 +27,11 @@ public class Board {
         }
     }
     
-        public WinLoseTie status(){
         /* Using a set to determine if a win. If length is one and 
         that one object int he set is a player, then it's the player who
         just made a move. So the current player is a winner.
         */
+        public Status status(){
         Set<Character> set = new HashSet<Character>();
 
         char[][] gameBoard = this.getBoard(); 
@@ -46,10 +46,10 @@ public class Board {
         }
 
         if(set.size() == 1){
-            if(set.contains(XorO.PlayerX.getTurn())){
-                return WinLoseTie.WinX;
-            } else if(set.contains(XorO.PlayerO.getTurn())){
-                return WinLoseTie.WinO;
+            if(set.contains(GamePiece.X.toString())){
+                return Status.WinX;
+            } else if(set.contains(GamePiece.O.toString())){
+                return Status.WinO;
             }
         }
 
@@ -61,10 +61,10 @@ public class Board {
         }
 
         if(set.size() == 1){
-            if(set.contains(XorO.PlayerX.getTurn())){
-                return WinLoseTie.WinX;
-            } else if(set.contains(XorO.PlayerO.getTurn())){
-                return WinLoseTie.WinO;
+            if(set.contains(GamePiece.X.toString())){
+                return Status.WinX;
+            } else if(set.contains(GamePiece.O.toString())){
+                return Status.WinO;
             }
         }
         set.clear();
@@ -76,10 +76,10 @@ public class Board {
                 set.add(gameBoard[i][j]);
             }
             if(set.size() == 1){
-                if(set.contains(XorO.PlayerX.getTurn())){
-                    return WinLoseTie.WinX;
-                } else if(set.contains(XorO.PlayerO.getTurn())){
-                    return WinLoseTie.WinO;
+                if(set.contains(GamePiece.X.toString())){
+                    return Status.WinX;
+                } else if(set.contains(GamePiece.O.toString())){
+                    return Status.WinO;
                 }
             }
             set.clear();
@@ -88,10 +88,10 @@ public class Board {
                 set.add(gameBoard[j][i]);
             }
             if(set.size() == 1){
-                if(set.contains(XorO.PlayerX.getTurn())){
-                    return WinLoseTie.WinX;
-                } else if(set.contains(XorO.PlayerO.getTurn())){
-                    return WinLoseTie.WinO;
+                if(set.contains(GamePiece.X.toString())){
+                    return Status.WinX;
+                } else if(set.contains(GamePiece.O.toString())){
+                    return Status.WinO;
                 }
             }
             set.clear();
@@ -105,9 +105,9 @@ public class Board {
 
 
         if(!set.contains(' ')){
-            return WinLoseTie.Tie;
+            return Status.Tie;
         }
-        return WinLoseTie.Continue;
+        return Status.Continue;
         }
 
         
@@ -129,10 +129,10 @@ public class Board {
     }
     
     // Sets coordinate as X or Y to board
-    public void setCoord(int xCoord, int yCoord, XorO turn){
+    public void setCoord(int xCoord, int yCoord, GamePiece piece){
             this.xCoord = xCoord;
             this.yCoord = yCoord;
-            board[xCoord][yCoord] = turn.getTurn();
+            board[xCoord][yCoord] = piece.toChar();
     }
     
     public char[][] getBoard(){
