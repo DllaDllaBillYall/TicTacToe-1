@@ -177,14 +177,14 @@ public class Player {
         return moves.get(bestMove);
     }
     
-    public PlayerType getIs(){
+    public PlayerType getType(){
         return this.type;
     }
     
-    public void setIs(PlayerType is){
+    public void setType(PlayerType type){
         this.type = type;
     }
-    public void setTurn(GamePiece piece){
+    public void setPiece(GamePiece piece){
         this.piece = piece;
     }
     
@@ -206,6 +206,6 @@ public class Player {
 
     @Override
     public String toString(){
-        return "Player " + piece.toChar() + " is a " + type.getIs() + ".";
+        return "Player " + piece.toChar() + " is a " + type.toString() + ".";
     }
 }

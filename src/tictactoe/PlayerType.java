@@ -9,15 +9,15 @@ package tictactoe;
 public enum PlayerType {
     CPU("CPU"), HumanO("user"), HumanX("user");
     
-    private String is;
+    private String type;
     
-    PlayerType(String is){
-        this.is = is;
+    PlayerType(String type){
+        this.type = type;
     }
     
-    
-    public String getIs(){
-        return is;
+    @Override
+    public String toString(){
+        return type;
     }
     
 }

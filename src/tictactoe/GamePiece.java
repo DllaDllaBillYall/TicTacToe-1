@@ -11,7 +11,7 @@ public enum GamePiece {
     
     private char piece;
     
-    GamePiece(char player) {
+    GamePiece(char piece) {
         this.piece = piece;
     }
     

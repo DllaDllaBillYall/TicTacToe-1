@@ -31,10 +31,10 @@ public class Game {
             switch(menu()){
                 // 1) Multiplayer choice
                 case 1:
-                    playerX.setIs(PlayerType.HumanX);
-                    playerX.setTurn(GamePiece.X);
-                    playerO.setIs(PlayerType.HumanO);
-                    playerO.setTurn(GamePiece.O);
+                    playerX.setType(PlayerType.HumanX);
+                    playerX.setPiece(GamePiece.X);
+                    playerO.setType(PlayerType.HumanO);
+                    playerO.setPiece(GamePiece.O);
                     break;
                     
                 /** 2) CPU - CPU goes first.
@@ -42,10 +42,10 @@ public class Game {
                  */        
                 case 2:
                     // 
-                    playerX.setIs(PlayerType.CPU);
-                    playerX.setTurn(GamePiece.X);
-                    playerO.setIs(PlayerType.HumanO);
-                    playerO.setTurn(GamePiece.O);
+                    playerX.setType(PlayerType.CPU);
+                    playerX.setPiece(GamePiece.X);
+                    playerO.setType(PlayerType.HumanO);
+                    playerO.setPiece(GamePiece.O);
                     break;
             }
             
@@ -59,7 +59,7 @@ public class Game {
         public void play(){
             board.printBoard();
             
-            switch(player.getIs()){
+            switch(player.getType()){
                 case CPU:
                     System.out.println("It is the CPU's turn.");
                     break;
