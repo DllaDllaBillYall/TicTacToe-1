@@ -206,6 +206,6 @@ public class Player {
 
     @Override
     public String toString(){
-        return "Player " + piece.toChar() + " is a " + is.getIs() + ".";
+        return "Player " + piece.toChar() + " is a " + type.getIs() + ".";
     }
 }
