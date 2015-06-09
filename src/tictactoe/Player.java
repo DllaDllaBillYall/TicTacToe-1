@@ -130,8 +130,7 @@ public class Player {
                     if(board[i][j] == ' '){
                         board[i][j] = piece.toChar();
                         CPUMove move = new CPUMove(i, j);
-//                        b.printBoard();
-
+                        
                         if(piece.toChar() == 'X'){
                             piece = GamePiece.O;
                             type = PlayerType.HumanO;

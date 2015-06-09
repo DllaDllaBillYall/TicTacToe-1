@@ -77,9 +77,9 @@ public class Board {
                 set.add(gameBoard[i][j]);
             }
             if(set.size() == 1){
-                if(set.contains(GamePiece.X.toString())){
+                if(set.contains(GamePiece.X.toChar())){
                     return Status.WinX;
-                } else if(set.contains(GamePiece.O.toString())){
+                } else if(set.contains(GamePiece.O.toChar())){
                     return Status.WinO;
                 }
             }
@@ -89,9 +89,9 @@ public class Board {
                 set.add(gameBoard[j][i]);
             }
             if(set.size() == 1){
-                if(set.contains(GamePiece.X.toString())){
+                if(set.contains(GamePiece.X.toChar())){
                     return Status.WinX;
-                } else if(set.contains(GamePiece.O.toString())){
+                } else if(set.contains(GamePiece.O.toChar())){
                     return Status.WinO;
                 }
             }
